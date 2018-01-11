@@ -1,0 +1,42 @@
+server:
+    port: 8081
+
+spring:
+  application:
+    name: mas-eureka
+
+management:
+  port: 9081
+  security:
+    enabled: false
+  address: 127.0.0.1
+  context-path: /manage
+
+eureka:
+  server:
+    #自我保护模式 关闭
+    enable-self-preservation: false
+    #清理无效节点的时间间隔，默认60000毫秒，即60秒
+    eviction-interval-timer-in-ms: 30000
+  instance:
+    #指定ip
+    ip-address: 192.168.0.22
+    prefer-ip-address: true
+    #等待下一次心跳的超时时间 默认90s 在leaseExpirationDurationInSeconds后，server端没有收到client的心跳，则将摘除该instance
+    lease-expiration-duration-in-seconds: 30
+    #eureka client发送心跳给server端的频率 默认30s
+    lease-renewal-interval-in-seconds: 10
+    #hostname: node1
+
+  client:
+    #表示是否将自己注册到Eureka Server，默认为true
+    #register-with-eureka: false
+    #是否从Eureka Server获取注册信息，默认为true
+    #fetch-registry: false
+    #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔
+    #多注册中心 每台注册中心分别指向其它两个节点即可
+    serviceUrl:
+      defaultZone: http://192.168.0.21:8081/eureka/
+
+
+

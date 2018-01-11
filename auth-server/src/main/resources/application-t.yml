@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: auth-server
+  datasource:
+      # 主数据源 默认的
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      #url: jdbc:mysql://192.168.0.123:3306/mas?characterEncoding=utf8&useConfigs=maxPerformance&rewriteBatchedStatements=true&useSSL=false
+      url: jdbc:mysql://192.168.7.225:3306/oauth2?characterEncoding=utf8&useConfigs=maxPerformance&rewriteBatchedStatements=true&useSSL=false
+      username: mas
+      #password: 1324ewqr
+      password: password
+      # 连接池补充设置
+      #初始化时建立物理连接的个数 最小 最大连接池数量
+      initialSize: 10
+      minIdle: 3
+      maxActive: 15
+      # 获取连接时最大等待时间，单位毫秒
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      #用来检测连接是否有效的sql
+      validationQuery: SELECT 1 FROM DUAL
+      #执行validationQuery检测连接是否有效
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      # 是否缓存preparedStatement 在mysql下建议关闭
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: -1
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 配置监控统计拦截的filters
+      filters: stat,wall,log4j2
+      # 合并多个DruidDataSource的监控数据
+      #useGlobalDataSourceStat: true
+      loginUsername: mas
+      loginPassword: 1234
+
+#security:
+  #oauth2:
+    #client:
+      #clientId: acme
+      #clientSecret: acmesecret
+      #authorized-grant-types: authorization_code,refresh_token,password
+      #scope: openid
+  #user:
+    #name: root
+    #password: password
+#server:
+  #contextPath: /uaa
+
